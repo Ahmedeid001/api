@@ -1,0 +1,139 @@
+<html>
+    <head>
+    </head>
+    <body>
+    <form name="form1" method="post" enctype="multipart/form-data">
+        <table width="25%" border="0">
+            <tr>
+                <td>name</td>
+                <td><input type="text" name="name"></td>
+            </tr>
+            <tr>
+                <td>description</td>
+                <td><input type="text" name="description"></td>
+            </tr>
+            <tr>
+                <td>add photo</td>
+                <td><input type="file" name="f1"></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td><input type="submit" name="Submit1" value="Add"></td>
+            </tr>
+            
+        </table>
+        <?php
+             if(isset($_POST['Submit1'])) {
+                $tn=md5(time());
+                $fnm=$_FILES["f1"]["name"];
+                $dst="./images/".$tn.$fnm;
+                $dst1="images/".$tn.$fnm;
+                move_uploaded_file($_FILES["f1"]["tmp_name"],$dst);
+    
+                $sql = mysqli_query($conn, "INSERT INTO articles('name' ,'discerption' ,'photo') VALUES ('$_POST[name]','$_post[discerption]','$dst1')");
+                if($sql){
+                
+                    echo "Data Inserted";
+                }
+            }  
+        ?>
+    </form>
+    </body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+<?php
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "articles";
+
+// Create a connection
+$conn = new mysqli($servername, $username, $password, $dbname);
+
+// Check connection
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+
+//echo "Connected successfully";
+
+// Close the connection
+$conn->close();
+?>
+
+
+
+
+
+
+
+<html>
+    <head>
+    </head>
+    <body>
+    <form name="form1" method="post" enctype="multipart/form-data">
+        <table width="25%" border="0">
+            <tr>
+                <td>name</td>
+                <td><input type="text" name="name"></td>
+            </tr>
+            <tr>
+                <td>description</td>
+                <td><input type="text" name="description"></td>
+            </tr>
+            <tr>
+                <td>add photo</td>
+                <td><input type="file" name="f1"></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td><input type="submit" name="Submit1" value="Add"></td>
+            </tr>
+            
+        </table>
+        <?php
+             if(isset($_POST['Submit1'])) {
+                $tn=md5(time());
+                $fnm=$_FILES["f1"]["name"];
+                $dst="./images/".$tn.$fnm;
+                $dst1="images/".$tn.$fnm;
+                move_uploaded_file($_FILES["f1"]["tmp_name"],$dst);
+    
+                $sql = mysqli_query($conn, "INSERT INTO articles('name' ,'discerption' ,'photo') VALUES ('$_POST[name]','$_post[discerption]','$dst1')");
+                if($sql){
+                
+                    echo "Data Inserted";
+                }
+            }  
+        ?>
+    </form>
+    </body>
+</html>
+
+
+
+echo "
+        <center>
+        <main>
+            <div class='card' style='width: 18rem;'>
+                <img src='$row[image]' class='card-img-top'  >
+                <div class='card-content'>
+                    <h5 class='card-title'>$row[name] </h5>
+                    <p class='card-text'> $row[description]</p>
+                    <a href='edit.php ?id=$row[id]' class='btn btn-primary'>Edit</a>
+                    <a href='delete.php?id=$row[id]' class='btn btn-danger'>Delete</a>
+            </div>
+            </div>
+        </main>
+        </center>
+        ";
