@@ -1,10 +1,10 @@
 <?php
 
 // معلومات اتصال قاعدة البيانات
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "articles";
+$servername = "sql201.ezyro.com";
+$username = "ezyro_36419189";
+$password = "d2b0f5910";
+$dbname = "ezyro_36419189_nfwe";
 
 // إنشاء اتصال بقاعدة البيانات
 $conn = new mysqli($servername, $username, $password, $dbname);
